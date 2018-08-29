@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/films"
+        android:icon="@drawable/baseline_movie_black_24dp"
+        android:title="@string/title_films" />
+
+    <item
+        android:id="@+id/cafes"
+        android:icon="@drawable/baseline_local_cafe_black_24dp"
+        android:title="@string/title_cafes" />
+
+    <item
+        android:id="@+id/others"
+        android:icon="@drawable/baseline_sentiment_satisfied_alt_black_24dp"
+        android:title="@string/title_others" />
+
+</menu>

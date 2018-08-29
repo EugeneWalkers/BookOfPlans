@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "967422490024",
+    "firebase_url": "https://bookofplans.firebaseio.com",
+    "project_id": "bookofplans",
+    "storage_bucket": "bookofplans.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967422490024:android:7363136d3a448997",
+        "android_client_info": {
+          "package_name": "ew.bookofplans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967422490024-84hm0c2ofejgiknb09u2cdc4e1qv9s6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-jyS86f-Xj_rHNzKdKrnbzB0IWO8VEjE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

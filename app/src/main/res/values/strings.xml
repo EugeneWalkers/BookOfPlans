@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Book of Plans</string>
+    <string name="title_notifications">Уведомления</string>
+    <string name="title_films">Фильмы</string>
+    <string name="title_cafes">Кафе</string>
+    <string name="title_others">Другие планы</string>
+    <string name="refresh_string_title">Обновить</string>
+    <string name="add_product">Новый элемент</string>
+</resources>
