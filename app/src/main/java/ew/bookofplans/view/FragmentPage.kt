@@ -22,11 +22,10 @@ class FragmentPage : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        myArguments = arguments
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_page, container, false)
+        var v = super.onCreateView(inflater, container, savedInstanceState)
 
         return v
     }

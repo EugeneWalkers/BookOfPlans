@@ -10,7 +10,7 @@
 
     <style name="Toolbar">
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPurpleDark</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
