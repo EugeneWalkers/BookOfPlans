@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import ew.bookofplans.R
+import ew.bookofplans.model.Cafe
 import ew.bookofplans.model.Film
 import ew.bookofplans.model.Plan
 import ew.bookofplans.utilities.RecyclerAdapter
@@ -17,8 +18,6 @@ import ew.bookofplans.viewModel.MainViewModel
 import ew.bookofplans.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.fragment_page.*
-import kotlinx.android.synthetic.main.fragment_page.view.*
 import java.util.*
 
 
@@ -29,7 +28,20 @@ class MainActivity : AppCompatActivity() {
     private var othersFragment: FragmentPage? = null
     private var viewModel: MainViewModel? = null
     private var toolbar: Toolbar? = null
-    private var recyclerView:RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
+    private var adapter: RecyclerAdapter? = null
+
+
+    companion object {
+
+        val J = "Женя"
+        val S = "Саша"
+
+        fun obtainViewModel(activity: FragmentActivity): MainViewModel {
+            val factory = ViewModelFactory.getInstance(activity.application)
+            return ViewModelProviders.of(activity, factory).get(MainViewModel::class.java)
+        }
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -38,6 +50,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.my_fragment, filmsFragment)
                         .commit()
+                val list = arrayListOf<Plan>(Film("Матрица", J, Date(), true, "Фэнтези/Кинофантастика", true),
+                        Film("Призрак Оперы", S, Date(), false, "Драма/Триллер", true),
+                        Film("Mamma mia", S, Date(), true, "Романтический фильм/Музыкальный фильм", true),
+                        Film("Mamma mia 2", S, Date(), true, "Романтический фильм/Музыкальный фильм", false),
+                        Film("Матрица: \nПерезагрузка", J, Date(), false, "Фэнтези/Кинофантастика", false),
+                        Film("Матрица: \nРеволюция", J, Date(), false, "Фэнтези/Кинофантастика", false))
+                adapter?.setList(list)
+                adapter?.notifyDataSetChanged()
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.cafes -> {
@@ -45,6 +66,9 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.my_fragment, cafesFragment)
                         .commit()
+                adapter?.setList(arrayListOf(Cafe("SomeCafe", J, Date(), "Some address") as Plan))
+                adapter?.notifyDataSetChanged()
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.others -> {
@@ -52,6 +76,8 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.my_fragment, othersFragment)
                         .commit()
+                recyclerView?.adapter?.notifyDataSetChanged()
+
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -69,46 +95,45 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.my_fragment, filmsFragment)
                 .commit()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val a = item?.itemId
         when (a) {
             R.id.refresh -> {
-
+                //TODO: write refresher
             }
 
             R.id.add -> {
-
+                //TODO: write adder
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    companion object {
 
-        fun obtainViewModel(activity: FragmentActivity): MainViewModel {
-            val factory = ViewModelFactory.getInstance(activity.application)
-            return ViewModelProviders.of(activity, factory).get(MainViewModel::class.java)
-        }
-    }
-
-    private fun initFragments(){
+    private fun initFragments() {
         filmsFragment = FragmentPage()
         cafesFragment = FragmentPage()
         othersFragment = FragmentPage()
     }
 
-    private fun setToolbar(){
+    private fun setToolbar() {
         toolbar = findViewById(R.id.my_toolbar)
         toolbar?.setTitle(R.string.title_films)
-        toolbar?.inflateMenu(R.menu.menu_tolbar)
+        toolbar?.inflateMenu(R.menu.menu_toolbar)
     }
 
-    private fun setRecyclerView(){
+    private fun setRecyclerView() {
         recyclerView = my_fragment.recycler
-        val list = arrayListOf(Film("lololo", "Женя", Date(), "High", "Comedy") as Plan)
-        val adapter = RecyclerAdapter(list)
+        val list = arrayListOf<Plan>(Film("Матрица", J, Date(), true, "Фэнтези/Кинофантастика", true),
+                Film("Призрак Оперы", S, Date(), false, "Драма/Триллер", true),
+                Film("Mamma mia", S, Date(), true, "Романтический фильм/Музыкальный фильм", true),
+                Film("Mamma mia 2", S, Date(), true, "Романтический фильм/Музыкальный фильм", false),
+                Film("Матрица: \nПерезагрузка", J, Date(), false, "Фэнтези/Кинофантастика", false),
+                Film("Матрица: \nРеволюция", J, Date(), false, "Фэнтези/Кинофантастика", false))
+        adapter = RecyclerAdapter(list)
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.adapter = adapter
     }
